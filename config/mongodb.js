@@ -1,14 +1,13 @@
 'use strict';
 
 const MongoClient = require('mongodb').MongoClient;
-const validUrl = require('valid-url');
-const env = require('./config/env.js');
+const env = require('./env.js');
 
 const mongoDevSettings = {
     user: "urldev",
     password: "urldevpassword",
     host: process.env.IP,
-    port: 28017,
+    port: 27017,
     db: "url-shortener",
 };
 
@@ -29,15 +28,8 @@ if (env.NODE_ENV === 'DEV') {
 
 const open = function() {
     return MongoClient.connect(dbUrl);
-}
-
-const close = function(db) {
-    if (db) {
-        db.close();
-    }
-}
+};
 
 module.exports = {
-    open,
-    close
-}
+    open
+};
