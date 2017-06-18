@@ -1,0 +1,22 @@
+{
+  "name": "urlshortener-microservice",
+  "version": "1.0.0",
+  "description": "url shortener for FreeCodeCamp backend certification",
+  "main": "server.js",
+  "engines": {
+    "node": "8.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robo-jones/fcc-urlshortener-microservice.git"
+  },
+  "author": "Harrison Jones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robo-jones/fcc-urlshortener-microservice/issues"
+  },
+  "homepage": "https://github.com/robo-jones/fcc-urlshortener-microservice#readme"
+}
