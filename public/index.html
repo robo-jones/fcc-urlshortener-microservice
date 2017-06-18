@@ -1,0 +1,82 @@
+<!doctype HTML>
+
+<head>
+    <title>SHT URL shortener</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 class="text-center">SHT URL Shortener</h1>
+                <form>
+                    <div class="form-group" id="urlForm">
+                        <div class="input-group">
+                          <input type="text" id="urlInput" class="form-control" placeholder="Enter a Url...">
+                          <span class="input-group-btn">
+                            <button class="btn btn-primary" id="submitButton" type="button">Shorten</button>
+                          </span>
+                        </div>
+                    </div>
+                </form>
+                <div id="errorDisplay" class="hidden bg-danger">
+                    
+                </div>
+                <div id="resultDisplay">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h4>API info:</h4>
+                <p>GET requests to /api/shorten/&lt;url&gt; will return a JSON object, with shortUrl containing the shortened url relative to the site's root</p>
+                <h4>Example usage:</h4>
+                <code>/api/shorten/http://www.google.com</code>
+                <h4>Example output:</h4>
+                <code>
+                    {
+                      "shortUrl": "HyPvJ9VXZ"
+                    }
+                </code>
+                <p>Invalid URLs will return an error, as follows:</p>
+                <code>
+                    {
+                      "error": "INVALID URL FORMAT"
+                    }
+                </code>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <br>
+                <p>Created by Harrison Jones.</p>
+                <a href="https://github.com/robo-jones/fcc-urlshortener-microservice">Source on GitHub</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        var SITE_URL = 'https://fcc-api-projects-robojones.c9users.io';
+
+        $('#submitButton').click(function() {
+            console.log('button clicked!');
+            $('errorDisplay').addClass('hidden');
+            $('#urlInput').removeClass('has-error');
+            var url = $('#urlInput').val();
+            $.getJSON(SITE_URL + '/api/shorten/' + url).done(function(data) {
+                console.log(data);
+                if(data.error) {
+                    $('#urlForm').addClass('has-error');
+                    $('#errorDisplay').text('Please enter a valid url (don\'t forget the \'http://\'!).');
+                    $('#errorDisplay').removeClass('hidden');
+                } else {
+                    var shortUrl = SITE_URL + '/' + data.shortUrl;
+                    $('#resultDisplay').html('Your shortened link is: <a href=' + shortUrl + '>' + shortUrl + '</a>');
+                }
+            });
+        })
+    </script>
+</body>

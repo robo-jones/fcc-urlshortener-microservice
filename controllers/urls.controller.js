@@ -30,6 +30,7 @@ const shortUrlRedirect = function(req, res) {
 };
 
 const shortenUrl = function(req, res) {
+    //The 13 in slice is based on the api endpoint (/api/shorten/). There is probably a better place to put that number.
     const originalUrl = req.originalUrl.slice(13);
     if (!validUrl.isWebUri(originalUrl)) {
         res.json({

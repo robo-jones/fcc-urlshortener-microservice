@@ -11,7 +11,4 @@ router.get('/api/shorten/*', function(req, res) {
     urls.shortenUrl(req, res);
 });
 
-router.get('/', function(req, res) {
-    res.send('Hello, World!');
-});
 module.exports = router;
