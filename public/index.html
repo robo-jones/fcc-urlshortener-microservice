@@ -59,15 +59,14 @@
     </div>
     
     <script>
-        var SITE_URL = 'https://fcc-api-projects-robojones.c9users.io';
+        var SITE_URL = 'https://poised-birthday.glitch.me';
 
         $('#submitButton').click(function() {
-            console.log('button clicked!');
-            $('errorDisplay').addClass('hidden');
-            $('#urlInput').removeClass('has-error');
+            $('#resultDisplay').html('');
+            $('#errorDisplay').addClass('hidden');
+            $('#urlForm').removeClass('has-error');
             var url = $('#urlInput').val();
             $.getJSON(SITE_URL + '/api/shorten/' + url).done(function(data) {
-                console.log(data);
                 if(data.error) {
                     $('#urlForm').addClass('has-error');
                     $('#errorDisplay').text('Please enter a valid url (don\'t forget the \'http://\'!).');
